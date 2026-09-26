@@ -1,0 +1,25 @@
+# Instancias originais e convertidas
+/instancias_mwis/
+/graph_instances/
+
+# Resultados dos experimentos
+**/Resultados/
+
+# Executaveis e arquivos de compilacao
+/bin/
+/src/mdp/mdp_*
+/src/maxbisection/maxbs_*
+*.o
+*.out
+*.exe
+
+# Arquivos temporarios
+**/.tmp/
+*.part
+*.tar.gz
+awscliv2.zip
+/aws/
+
+# Python
+__pycache__/
+*.pyc
