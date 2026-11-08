@@ -3,6 +3,7 @@
 """Compila e executa independentemente os algoritmos MDP e Max Bisection."""
 
 import argparse
+import resource
 import subprocess
 import sys
 from pathlib import Path
@@ -120,6 +121,12 @@ def executar(comando: list[str], log: Path, cwd: Path) -> bool:
 
 
 def main() -> int:
+    try:
+        _, hard = resource.getrlimit(resource.RLIMIT_STACK)
+        resource.setrlimit(resource.RLIMIT_STACK, (hard, hard))
+    except (ValueError, OSError):
+        pass
+
     parser = argparse.ArgumentParser(
         description="Executa MDP e Max Bisection nas instancias convertidas."
     )

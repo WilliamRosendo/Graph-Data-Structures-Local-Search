@@ -408,12 +408,12 @@ curn: 1 2 5 0 3 4 6
 */
 
 static void perturbationBasedTabuSearch(Solution &I, int Piter, ll MaxIter, int gamma, int maxt, Solution &best) {
-    int   current_solution[total_nbr_v];
-    int   best_solution[total_nbr_v];
-    int   tabu[total_nbr_v];
-    int   pos[total_nbr_v];
-    float vertex_gain[total_nbr_v];
-    float best_vertex_gain[total_nbr_v];
+    int   *current_solution = new int[total_nbr_v];
+    int   *best_solution = new int[total_nbr_v];
+    int   *tabu = new int[total_nbr_v];
+    int   *pos = new int[total_nbr_v];
+    float *vertex_gain = new float[total_nbr_v];
+    float *best_vertex_gain = new float[total_nbr_v];
 
     float current_weight = 0.0;
     float best_weight    = 0.0;
@@ -518,6 +518,13 @@ static void perturbationBasedTabuSearch(Solution &I, int Piter, ll MaxIter, int 
     currentToSolution(I,    current_solution, vertex_gain,      current_weight);
     currentToSolution(best, best_solution,    best_vertex_gain, best_weight);
     verifySolutionWeight(I, current_weight);
+
+    delete[] current_solution;
+    delete[] best_solution;
+    delete[] tabu;
+    delete[] pos;
+    delete[] vertex_gain;
+    delete[] best_vertex_gain;
 }
 
 static bool samePartition(const Solution &a, const Solution &b) {

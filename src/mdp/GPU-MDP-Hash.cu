@@ -676,11 +676,11 @@ void tabu_search(int *sol){
     c_s = clock();
 
     float  used_time;
-    bool   is_solution[total_nbr_v] = {false};
-    int    current_solution[total_nbr_v];
-    float  vertex_gain[total_nbr_v];
-    int    tabu[total_nbr_v] = {0};
-    int    pos[total_nbr_v];
+    bool   *is_solution = new bool[total_nbr_v]();
+    int    *current_solution = new int[total_nbr_v];
+    float  *vertex_gain = new float[total_nbr_v];
+    int    *tabu = new int[total_nbr_v]();
+    int    *pos = new int[total_nbr_v];
 
     // initialization of data structures
     initialSolution(sol, current_solution, vertex_gain, is_solution, pos);
@@ -753,6 +753,12 @@ void tabu_search(int *sol){
     if(iter > 1){
         printf("Iteracoes: %d\tTime Tabu: %.10lf\tSol: %.10lf\n", iter, (c_e-c_s)/CLOCKS_PER_SEC, improved_cost);
     }
+
+    delete[] is_solution;
+    delete[] current_solution;
+    delete[] vertex_gain;
+    delete[] tabu;
+    delete[] pos;
 }
 
 // Check the solution is duplicate or not in the population
